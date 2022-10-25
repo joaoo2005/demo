@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/clinete/v1/")
+@RequestMapping(value = "/cliente/v1/")
 public class Controller {
 
     @Autowired
@@ -24,4 +24,9 @@ public class Controller {
         Optional<Cliente> clienteReturned = repository.findById(id);
         return clienteReturned;
     }
+    @DeleteMapping("/{id}")
+    public void deleteClienteById(@PathVariable Long id){
+        repository.deleteById(id);
+    }
+
 }
