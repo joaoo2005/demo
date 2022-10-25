@@ -8,6 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class Cliente {
     @Id
+    //teste 2
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
