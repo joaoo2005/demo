@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.dto;
 
 public class clienteDTO {
     private String endereco;
@@ -17,4 +17,6 @@ public class clienteDTO {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    //teste
 }
