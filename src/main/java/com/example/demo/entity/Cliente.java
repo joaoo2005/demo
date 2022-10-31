@@ -1,26 +1,37 @@
 package com.example.demo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Cliente {
     @Id
-    //teste 2
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
     private String endereco;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Produto> produtos;
+
+    public Cliente(String nome, String endereco, List<Produto> produtos) {
+        this.nome = nome;
+        this.endereco = endereco;
+        this.produtos = produtos;
+    }
 
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome) {
-        this.id = id;
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
         this.nome = nome;
-        this.endereco = endereco;
     }
 
     public String getEndereco() {
@@ -31,19 +42,11 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public Long getId() {
-        return id;
+    public List<Produto> getProdutos() {
+        return produtos;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 }
