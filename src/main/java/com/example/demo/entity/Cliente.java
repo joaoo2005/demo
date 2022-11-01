@@ -1,6 +1,9 @@
 package com.example.demo.entity;
 
+import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -8,7 +11,9 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull(message = "O nome é obrigatorio!")
     private String nome;
+    @
     private String endereco;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Produto> produtos;

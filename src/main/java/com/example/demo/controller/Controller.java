@@ -4,8 +4,10 @@ import com.example.demo.entity.Cliente;
 import com.example.demo.repository.Repository;
 import com.example.demo.dto.clienteDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +19,7 @@ public class Controller {
     Repository repository;
 
     @PostMapping
-    public Cliente creat(@RequestBody Cliente cliente){
+    public Cliente creat(@RequestBody @Valid Cliente cliente){
         Cliente clienteSaved = repository.save(cliente);
         return clienteSaved;
     }
@@ -29,8 +31,20 @@ public class Controller {
         return clienteReturned;
     }
     @DeleteMapping("/{id}")
-    public void deleteClienteById(@PathVariable Long id){
-        repository.deleteById(id);
+    public String deleteClienteById(@PathVariable Long id){
+        try{
+            Optional<Cliente> cliente = Optional.of(repository.getById(id));
+            if(cliente.isPresent()){
+                repository.deleteById(id);
+                return "Cliente de " + id + " deletado com sucesso";
+            }else{
+                throw new Exception("Cliente inexistente");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            return "O cliente de " + id + " não existe para ser deletado!" +
+                    " Por favor, entre em contato com o atendimento ...";
+        }
     }
 
     @GetMapping
