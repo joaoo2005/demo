@@ -13,7 +13,6 @@ public class Cliente {
     private Long id;
     @NotNull(message = "O nome é obrigatorio!")
     private String nome;
-    @
     private String endereco;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Produto> produtos;
