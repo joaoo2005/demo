@@ -20,7 +20,6 @@ public class Produto {
         this.nome = nome;
         this.precoUnitario = precoUnitario;
         this.precoTotal = precoTotal;
-        this.quantidade = quantidade;
     }
 
     public Produto() {
