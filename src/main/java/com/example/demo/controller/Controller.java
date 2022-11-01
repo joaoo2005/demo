@@ -31,11 +31,11 @@ public class Controller {
     @DeleteMapping("/{id}")
     public String deleteClienteById(@PathVariable Long id){
         try{
-            Cliente cliente = repository.getById(id);
-            if(cliente != null){
+            Optional<Cliente> cliente = Optional.of(repository.getById(id));
+            if(cliente.isPresent()){
                 repository.deleteById(id);
                 return "Cliente de " + id + " deletado com sucesso";
-            }else {
+            }else{
                 throw new Exception("Cliente inexistente");
             }
         }catch(Exception e){
