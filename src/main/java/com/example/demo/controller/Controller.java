@@ -4,8 +4,10 @@ import com.example.demo.entity.Cliente;
 import com.example.demo.repository.Repository;
 import com.example.demo.dto.clienteDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +19,7 @@ public class Controller {
     Repository repository;
 
     @PostMapping
-    public Cliente creat(@RequestBody Cliente cliente){
+    public Cliente creat(@RequestBody @Valid Cliente cliente){
         Cliente clienteSaved = repository.save(cliente);
         return clienteSaved;
     }
